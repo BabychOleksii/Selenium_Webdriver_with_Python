@@ -13,3 +13,9 @@ driver.find_element(By.CSS_SELECTOR, value="input[name='name']").send_keys("Alex
 driver.find_element(By.NAME, value="email").send_keys("alexbaum@mail.net")
 driver.find_element(By.ID, value="exampleCheck1").click()
 driver.find_element(By.XPATH, value="//input[@type='submit']").click()
+
+driver.find_element(By.XPATH, "//input[@type='submit']").click()
+message = driver.find_element(By.CLASS_NAME, 'alert-success').text
+print(message)
+assert "Success" in message
+# assert "Fail" in message
