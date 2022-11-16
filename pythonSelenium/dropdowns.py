@@ -17,6 +17,7 @@ dropdown = Select(driver.find_element(By.ID, "exampleFormControlSelect1"))
 dropdown.select_by_visible_text("Female")
 time.sleep(2)
 dropdown.select_by_index(0)
+# dropdown.select_by_value("M")
 
 # AutoSuggestive dynamic dropdowns
 driver.get("https://rahulshettyacademy.com/dropdownsPractise/")
