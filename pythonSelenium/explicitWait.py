@@ -24,6 +24,16 @@ for result in results:
 driver.find_element(By.CSS_SELECTOR, "img[alt='Cart']").click()
 driver.find_element(By.XPATH, "//button[text()='PROCEED TO CHECKOUT']").click()
 
+#Sum validation
+prices = driver.find_elements(By.CSS_SELECTOR, "tr td:nth-child(5) p")
+orderAmount = 0
+for price in prices:
+    orderAmount = orderAmount + int(price.text)
+
+print(orderAmount)
+totalAmount = int(driver.find_element(By.CSS_SELECTOR, ".totAmt").text)
+assert orderAmount == totalAmount
+
 wait = WebDriverWait(driver, 10)
 wait.until(expected_conditions.element_to_be_clickable((By.CLASS_NAME, "promoCode")))
 driver.find_element(By.CSS_SELECTOR, ".promoCode").send_keys("rahulshettyacademy")
