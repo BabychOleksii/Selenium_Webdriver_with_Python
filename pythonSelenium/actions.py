@@ -15,7 +15,11 @@ action = ActionChains(driver)
 action.move_to_element(driver.find_element(By.ID, "mousehover")).perform()
 action.context_click(driver.find_element(By.LINK_TEXT, "Top")).perform()
 action.move_to_element(driver.find_element(By.LINK_TEXT, "Reload")).click().perform()
-# action.double_click()
 # action.drag_and_drop()
 
+driver.get("https://chercher.tech/practice/practice-pop-ups-selenium-webdriver")
+
+action.double_click(driver.find_element(By.ID, "double-click")).perform()
+alert = driver.switch_to.alert
+alert.accept()
 
