@@ -1,4 +1,7 @@
-def test_hello():
+import pytest
+
+
+def test_hello(setup):
     print("Hello World!")
 
 
