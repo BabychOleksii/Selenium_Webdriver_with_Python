@@ -6,6 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from PythonSelFramework.utilities.BaseClass import BaseClass
 from PythonSelFramework.pageObject.HomePage import HomePage
+from PythonSelFramework.pageObject.CheckoutPage import CheckoutPage
 
 
 class TestOne(BaseClass):
@@ -14,15 +15,19 @@ class TestOne(BaseClass):
         homePage = HomePage(self.driver)
         homePage.shopItems().click()
         # self.driver.find_element(By.CSS_SELECTOR, "a[href*='shop']").click()
-        products = self.driver.find_elements(By.XPATH, "//div[@class='card h-100']")
+        checkoutPage = CheckoutPage(self.driver)
+        products = checkoutPage.getCardTitle()
+        # products = self.driver.find_elements(By.XPATH, "//div[@class='card h-100']")
 
         for product in products:
             productName = product.find_element(By.XPATH, "div/h4/a").text
             if productName == "Blackberry":
-                product.find_element(By.XPATH, "div/button").click()
+                checkoutPage.getCardFooter().click()
+                # product.find_element(By.XPATH, "div/button").click()
 
         self.driver.find_element(By.CSS_SELECTOR, "a[class*='btn-primary']").click()
-        self.driver.find_element(By.XPATH, "//button[@class='btn btn-success']").click()
+        checkoutPage.checkoutItems().click()
+        # self.driver.find_element(By.XPATH, "//button[@class='btn btn-success']").click()
         self.driver.find_element(By.ID, "country").send_keys("ind")
         wait = WebDriverWait(self.driver, 10)
         wait.until(EC.presence_of_element_located((By.LINK_TEXT, "India")))
