@@ -5,13 +5,15 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from PythonSelFramework.utilities.BaseClass import BaseClass
+from PythonSelFramework.pageObject.HomePage import HomePage
 
 
 class TestOne(BaseClass):
 
     def test_e2e(self):
-
-        self.driver.find_element(By.CSS_SELECTOR, "a[href*='shop']").click()
+        homePage = HomePage(self.driver)
+        homePage.shopItems().click()
+        # self.driver.find_element(By.CSS_SELECTOR, "a[href*='shop']").click()
         products = self.driver.find_elements(By.XPATH, "//div[@class='card h-100']")
 
         for product in products:
