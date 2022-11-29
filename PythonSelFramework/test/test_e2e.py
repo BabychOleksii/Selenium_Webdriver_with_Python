@@ -13,9 +13,9 @@ class TestOne(BaseClass):
 
     def test_e2e(self):
         homePage = HomePage(self.driver)
-        homePage.shopItems().click()
+        checkoutPage = homePage.shopItems()
         # self.driver.find_element(By.CSS_SELECTOR, "a[href*='shop']").click()
-        checkoutPage = CheckoutPage(self.driver)
+        # checkoutPage = CheckoutPage(self.driver)
         products = checkoutPage.getCardTitle()
         # products = self.driver.find_elements(By.XPATH, "//div[@class='card h-100']")
 
@@ -26,7 +26,7 @@ class TestOne(BaseClass):
                 # product.find_element(By.XPATH, "div/button").click()
 
         self.driver.find_element(By.CSS_SELECTOR, "a[class*='btn-primary']").click()
-        checkoutPage.checkoutItems().click()
+        confirmpage = checkoutPage.checkoutItems()
         # self.driver.find_element(By.XPATH, "//button[@class='btn btn-success']").click()
         self.driver.find_element(By.ID, "country").send_keys("ind")
         wait = WebDriverWait(self.driver, 10)
