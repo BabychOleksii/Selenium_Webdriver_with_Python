@@ -8,8 +8,9 @@ from PythonSelFramework.TestData.HomePageData import HomePageData
 class TestHomePage(BaseClass):
 
     def test_formSubmission(self, getData):
-
+        log = self.getLogger()
         homepage = HomePage(self.driver)
+        log.info("First name is " + getData["firstname"])
         homepage.getName().send_keys(getData["firstname"])
         homepage.getEmail().send_keys(getData["email"])
         homepage.getCheckBox().click()
@@ -25,3 +26,4 @@ class TestHomePage(BaseClass):
     @pytest.fixture(params=HomePageData.test_HomePage_data)
     def getData(self, request):
         return request.param
+
